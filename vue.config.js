@@ -1,3 +1,4 @@
 module.exports = {
-  publicPath: process.env.NODE_ENV === "production" ? "/perler-buddy/dist/" : "/"
+  publicPath:
+    process.env.NODE_ENV === "production" ? "/perler-buddy/dist/" : "/"
 };
