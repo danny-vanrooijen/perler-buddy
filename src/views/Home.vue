@@ -1,9 +1,18 @@
 <template>
-  <div>
-    <h1 class="container">This is the home page</h1>
+  <div class="flex">
+    <my-collection></my-collection>
+    <add-colour></add-colour>
   </div>
 </template>
 
 <script>
-export default {};
+import AddColour from "@/components/AddColour";
+import MyCollection from "@/components/MyCollection";
+
+export default {
+  components: {
+    AddColour,
+    MyCollection
+  }
+};
 </script>
