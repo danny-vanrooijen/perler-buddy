@@ -1,6 +1,8 @@
 <template>
-  <div class="p-5 w-7/10">
-    <h1 class="font-header text-4xl mb-6">Your colour collection</h1>
+  <div class="w-full p-5 lg:w-7/10 lg:overflow-y-scroll lg:h-screen">
+    <h1 class="font-header text-4xl mb-6 text-center lg:text-left">
+      Your colour collection
+    </h1>
     <div>
       <div
         class="bg-white border-2 border-gray-400 rounded-lg mb-4 relative overflow-hidden"
@@ -8,7 +10,7 @@
         :key="colour"
         :class="{
           'opacity-30': !colour.owned,
-          'cursor-pointer hover:ring-4 ring-offset-2 ring-offset-gray-200 ring-blue-500':
+          'group cursor-pointer hover:ring-4 ring-offset-2 ring-offset-gray-200 ring-blue-500':
             colour.owned
         }"
       >
@@ -56,10 +58,16 @@
               </div>
             </div>
             <div
-              class="absolute order-last w-10 h-full right-0 top-0"
+              class="absolute order-last w-10 h-full right-0 top-0 border-4 border-white rounded-tr-lg rounded-br-lg"
               :style="'background-color:rgb(' + colourRGB(colour) + ')'"
             ></div>
           </div>
+        </div>
+        <div
+          class="group-hover:opacity-70 bg-blue-200 absolute left-0 top-0 w-full h-full flex justify-center opacity-0"
+          @click="toggle"
+        >
+          <fa class="self-center" icon="pencil" width="36" height="36"></fa>
         </div>
       </div>
     </div>
@@ -70,6 +78,10 @@
 import { db } from "@/firestore";
 
 export default {
+  props: {
+    overlay: Boolean,
+    toggle: Function
+  },
   data() {
     return {
       colours: {}
@@ -116,3 +128,25 @@ export default {
   }
 };
 </script>
+
+<style lang="less" scoped>
+// Custom scrollbar that is more attactive
+@media (min-width: 768px) {
+  /* custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 20px;
+  }
+  ::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: #aaa;
+    border-radius: 20px;
+    border: 6px solid transparent;
+    background-clip: content-box;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #666;
+  }
+}
+</style>

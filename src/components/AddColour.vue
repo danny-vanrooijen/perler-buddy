@@ -1,6 +1,12 @@
 <template>
-  <div class="w-3/10 p-5 h-screen bg-green-900 text-white fixed right-0 top-0">
+  <div
+    class="overflow-hidden overflow-y-scroll lg:block w-full lg:w-3/10 lg:h-full p-5 lg:pr-0 bg-green-900 text-white h-screen fixed right-0 top-0"
+    :class="{ hidden: overlay }"
+  >
     <h2 class="font-header text-2xl mb-6">Add colours</h2>
+    <div class="absolute top-0 right-0 py-6 px-5 lg:hidden" @click="toggle">
+      <fa icon="times" width="24" height="24"></fa>
+    </div>
     <div class="mb-2">
       <div>
         <label for="ColourID">Colour ID</label>
@@ -153,6 +159,10 @@
 <script>
 import { db } from "@/firestore.js";
 export default {
+  props: {
+    overlay: Boolean,
+    toggle: Function
+  },
   data() {
     return {
       colour: {
@@ -212,3 +222,28 @@ export default {
   }
 };
 </script>
+
+<style lang="less" scoped>
+// Custom scrollbar that is more attactive
+@media (min-width: 768px) {
+  /* custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 20px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: #d6dee1;
+    border-radius: 20px;
+    border: 6px solid transparent;
+    background-clip: content-box;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #a8bbbf;
+  }
+}
+</style>
