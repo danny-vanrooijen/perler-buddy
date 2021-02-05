@@ -1,7 +1,7 @@
 <template>
   <div
-    class="overflow-hidden overflow-y-scroll lg:block w-full lg:w-3/10 lg:h-full p-5 lg:pr-0 bg-green-900 text-white h-screen fixed right-0 top-0"
-    :class="{ hidden: overlay }"
+    class="overflow-hidden overflow-y-scroll lg:block w-9/10 sm:w-1/2 lg:w-3/10 lg:h-full p-5 lg:pr-0 bg-green-900 text-white h-screen fixed right-0 top-0"
+    :class="{ hidden: !overlay }"
   >
     <h2 class="font-header text-2xl mb-6">Add colours</h2>
     <div class="absolute top-0 right-0 py-6 px-5 lg:hidden" @click="toggle">

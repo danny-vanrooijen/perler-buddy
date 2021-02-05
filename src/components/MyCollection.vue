@@ -63,11 +63,19 @@
             ></div>
           </div>
         </div>
-        <div
-          class="group-hover:opacity-70 bg-blue-200 absolute left-0 top-0 w-full h-full flex justify-center opacity-0"
-          @click="toggle"
-        >
-          <fa class="self-center" icon="pencil" width="36" height="36"></fa>
+        <div class="opacity-0 group-hover:opacity-100">
+          <div
+            class="absolute w-full h-full top-0 left-0 bg-blue-300 opacity-50"
+          ></div>
+          <div class="flex justify-center absolute w-full h-full top-0 left-0">
+            <fa
+              class="self-center text-blue-900"
+              icon="pencil"
+              width="36"
+              height="36"
+              @click="toggle"
+            ></fa>
+          </div>
         </div>
       </div>
     </div>
