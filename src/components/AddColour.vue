@@ -3,8 +3,11 @@
     class="overflow-hidden overflow-y-scroll lg:block w-9/10 sm:w-1/2 lg:w-3/10 lg:h-full p-5 lg:pr-0 bg-green-900 text-white h-screen fixed right-0 top-0"
     :class="{ hidden: !overlay }"
   >
-    <h2 class="font-header text-2xl mb-6">Add colours</h2>
-    <div class="absolute top-0 right-0 py-6 px-5 lg:hidden" @click="toggle">
+    <h2 class="font-header text-2xl mb-6">Manage your colours</h2>
+    <div
+      class="absolute top-0 right-0 py-6 px-5 lg:hidden"
+      @click="toggle(false)"
+    >
       <fa icon="times" width="24" height="24"></fa>
     </div>
     <div class="mb-2">
@@ -147,10 +150,25 @@
     </div>
     <div class="flex mt-10 justify-end">
       <button
+        v-if="!editing"
         class="hover:bg-black hover:bg-opacity-30 py-2 px-5 border border-1 border-white"
         @click="addColour"
       >
         Add this colour
+      </button>
+      <button
+        v-if="editing"
+        class="mr-4 hover:bg-black hover:bg-opacity-30 py-2 px-5 border border-1 border-white"
+        @click="clearForm"
+      >
+        Clear the form
+      </button>
+      <button
+        v-if="editing"
+        class="hover:bg-black hover:bg-opacity-30 py-2 px-5 border border-1 border-white"
+        @click="addColour"
+      >
+        Update this colour
       </button>
     </div>
   </div>
@@ -158,26 +176,17 @@
 
 <script>
 import { db } from "@/firestore.js";
+
 export default {
   props: {
     overlay: Boolean,
-    toggle: Function
+    toggle: Function,
+    colourProp: Object,
+    editing: Boolean
   },
   data() {
     return {
-      colour: {
-        id: "",
-        name: "",
-        r: "0",
-        g: "0",
-        b: "0",
-        brand: "Hama",
-        type: "Midi",
-        bags1000: "0",
-        bags3000: "0",
-        bags5000: "0",
-        owned: true
-      }
+      colour: this.colourProp
     };
   },
   computed: {
@@ -192,6 +201,7 @@ export default {
         .doc(this.colourCode)
         // Add the new colour to the database
         .set({
+          id: this.colour.id,
           code: this.colourCode,
           name: this.colour.name,
           r: this.colour.r,
@@ -218,6 +228,13 @@ export default {
         .catch(error => {
           console.log(error);
         });
+    },
+    clearForm() {
+      // Clear the form fields
+      for (let index in this.colour) {
+        let data = this.colour[index];
+        this.colourForm[index] = data;
+      }
     }
   }
 };

@@ -5,16 +5,17 @@
     </h1>
     <div>
       <div
-        class="bg-white border-2 border-gray-400 rounded-lg mb-4 relative overflow-hidden"
-        v-for="colour in colours"
+        class="border-2 border-gray-400 rounded-lg mb-4 relative overflow-hidden group cursor-pointer hover:ring-4 ring-offset-2 ring-offset-gray-200 ring-blue-500"
+        v-for="colour in colourCollection"
         :key="colour"
-        :class="{
-          'opacity-30': !colour.owned,
-          'group cursor-pointer hover:ring-4 ring-offset-2 ring-offset-gray-200 ring-blue-500':
-            colour.owned
-        }"
+        @click="toggleColourOverlay(colour.code)"
       >
-        <div class="block p-6 pr-16">
+        <div
+          class="block p-6 pr-16 bg-white"
+          :class="{
+            'opacity-30': !colour.owned
+          }"
+        >
           <div class="mb-2 flex justify-between items-baseline w-full">
             <h2>
               <span class="font-header text-2xl">{{ colour.code }} - </span>
@@ -73,7 +74,6 @@
               icon="pencil"
               width="36"
               height="36"
-              @click="toggle"
             ></fa>
           </div>
         </div>
@@ -88,11 +88,14 @@ import { db } from "@/firestore";
 export default {
   props: {
     overlay: Boolean,
-    toggle: Function
+    toggle: Function,
+    colourProp: Object,
+    editing: Boolean
   },
   data() {
     return {
-      colours: {}
+      colourCollection: {},
+      colourForm: this.colourProp
     };
   },
   mounted() {
@@ -120,7 +123,7 @@ export default {
       return db.collection("colours");
     },
     addColourToList(colour) {
-      this.colours[colour.code] = colour;
+      this.colourCollection[colour.code] = colour;
     },
     totalPerler(colour) {
       return (
@@ -132,6 +135,15 @@ export default {
     },
     isOwned(colour) {
       return colour.owned ? "checked" : "";
+    },
+    toggleColourOverlay(colourCode) {
+      // Toggle the add colour overlay
+      this.toggle(true);
+      // Update the fields in the add colour form
+      for (let index in this.colourCollection[colourCode]) {
+        let data = this.colourCollection[colourCode][index];
+        this.colourForm[index] = data;
+      }
     }
   }
 };
