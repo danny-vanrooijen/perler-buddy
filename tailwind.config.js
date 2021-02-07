@@ -24,7 +24,10 @@ module.exports = {
     },
     container: {
       center: true,
-      padding: "1rem"
+      padding: "1rem",
+      screens: {
+        xl: "1280px"
+      }
     }
   },
   variants: {
