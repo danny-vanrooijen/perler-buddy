@@ -1,8 +1,9 @@
 <template>
-  <div class="w-full p-5 lg:w-7/10 lg:overflow-y-scroll lg:h-screen">
+  <div class="w-full p-5 lg:h-screen">
     <h1 class="font-header text-4xl mb-6 text-center lg:text-left">
       Your colour collection
     </h1>
+    Add filter here
     <div>
       <div
         class="border-2 border-gray-400 rounded-lg mb-4 relative overflow-hidden group cursor-pointer hover:ring-4 ring-offset-2 ring-offset-gray-200 ring-blue-500"
@@ -11,23 +12,31 @@
         @click="toggleColourOverlay(colour.code)"
       >
         <div
-          class="block p-6 pr-16 bg-white"
+          class="block p-4 md:p-6 bg-white"
           :class="{
             'opacity-30': !colour.owned
           }"
         >
-          <div class="mb-2 flex justify-between items-baseline w-full">
+          <div
+            class="absolute top-4 right-4 md:bottom-6 md:right-6 md:top-auto"
+          >
+            <div
+              class="w-6 h-6 md:w-8 md:h-8 bg-white border-8 md:border-8 rounded-full"
+              :style="'border-color:rgb(' + colourRGB(colour) + ')'"
+            ></div>
+          </div>
+          <div class="mb-2 sm:flex justify-between items-baseline w-full">
+            <div class="md:order-last">
+              {{ colour.brand }} / {{ colour.type }}
+            </div>
             <h2>
               <span class="font-header text-2xl">{{ colour.code }} - </span>
               <span class="font-header text-2xl">{{ colour.name }}</span>
               <span class="text-base ml-2">({{ totalPerler(colour) }})</span>
             </h2>
-            <div class="justify-self-end">
-              {{ colour.brand }} / {{ colour.type }}
-            </div>
           </div>
-          <div class="flex">
-            <div class="w-20">
+          <div class="flex w-full justify-between md:w-1/2">
+            <!-- <div>
               <div class="font-header">Owned</div>
               <div class="mt-1">
                 <fa
@@ -45,36 +54,52 @@
                   class="text-red-500"
                 ></fa>
               </div>
-            </div>
-            <div class="w-60">
-              <div class="font-header">Colour</div>
-              <div class="text-xl">rgb({{ colourRGB(colour) }})</div>
-            </div>
-            <div class="w-80">
-              <div class="font-header"># of bags</div>
-              <div class="flex justify-between">
-                <div class="text-xl">{{ colour.bags1000 }} x 1000</div>
-                <div class="text-xl">{{ colour.bags3000 }} x 3000</div>
-                <div class="text-xl">{{ colour.bags5000 }} x 5000</div>
+            </div> -->
+            <div>
+              <div class="font-header">1000x</div>
+              <div class="relative">
+                <div
+                  class="absolute w-full h-full rounded-full border-2 border-gray-400 top-0 left-0 bg-gray-400"
+                ></div>
+                <div class="z-10 flex relative place-items-center px-2">
+                  <fa icon="minus" width="12" height="12"></fa>
+                  <div class="bg-white px-2 border-4 border-gray-400 mx-1">
+                    {{ colour.bags1000 }}
+                  </div>
+                  <fa icon="plus" width="12" height="12"></fa>
+                </div>
               </div>
             </div>
-            <div
-              class="absolute order-last w-10 h-full right-0 top-0 border-4 border-white rounded-tr-lg rounded-br-lg"
-              :style="'background-color:rgb(' + colourRGB(colour) + ')'"
-            ></div>
-          </div>
-        </div>
-        <div class="opacity-0 group-hover:opacity-100">
-          <div
-            class="absolute w-full h-full top-0 left-0 bg-blue-300 opacity-50"
-          ></div>
-          <div class="flex justify-center absolute w-full h-full top-0 left-0">
-            <fa
-              class="self-center text-blue-900"
-              icon="pencil"
-              width="36"
-              height="36"
-            ></fa>
+            <div>
+              <div class="font-header">3000x</div>
+              <div class="relative">
+                <div
+                  class="absolute w-full h-full rounded-full border-2 border-gray-400 top-0 left-0 bg-gray-400"
+                ></div>
+                <div class="z-10 flex relative place-items-center px-2">
+                  <fa icon="minus" width="12" height="12"></fa>
+                  <div class="bg-white px-2 border-4 border-gray-400 mx-1">
+                    {{ colour.bags3000 }}
+                  </div>
+                  <fa icon="plus" width="12" height="12"></fa>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="font-header">6000x</div>
+              <div class="relative">
+                <div
+                  class="absolute w-full h-full rounded-full border-2 border-gray-400 top-0 left-0 bg-gray-400"
+                ></div>
+                <div class="z-10 flex relative place-items-center px-2">
+                  <fa icon="minus" width="12" height="12"></fa>
+                  <div class="bg-white px-2 border-4 border-gray-400 mx-1">
+                    {{ colour.bags5000 }}
+                  </div>
+                  <fa icon="plus" width="12" height="12"></fa>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

@@ -1,11 +1,11 @@
 <template>
   <div
-    class="overflow-hidden overflow-y-scroll lg:block w-9/10 sm:w-1/2 lg:w-3/10 lg:h-full p-5 lg:pr-0 bg-green-900 text-white h-screen fixed right-0 top-0"
+    class="overflow-hidden overflow-y-scroll w-9/10 sm:w-1/2 lg:w-3/10 lg:h-full p-5 lg:pr-0 bg-green-900 text-white h-screen fixed right-0 top-0"
     :class="{ hidden: !overlay }"
   >
     <h2 class="font-header text-2xl mb-6">Manage your colours</h2>
     <div
-      class="absolute top-0 right-0 py-6 px-5 lg:hidden"
+      class="absolute top-0 right-0 py-6 px-5 cursor-pointer lg:pr-0"
       @click="toggle(false)"
     >
       <fa icon="times" width="24" height="24"></fa>
@@ -23,6 +23,7 @@
           maxlength="3"
           v-model="colour.id"
           id="ColourID"
+          v-on:keyup.enter="addColour"
         />
       </div>
     </div>
@@ -36,6 +37,7 @@
           type="text"
           v-model="colour.name"
           id="ColourName"
+          v-on:keyup.enter="addColour"
         />
       </div>
     </div>
@@ -51,6 +53,7 @@
           maxlength="3"
           v-model="colour.r"
           id="ColourR"
+          v-on:keyup.enter="addColour"
         />
         <label for="ColourG">G:</label>
         <input
@@ -61,6 +64,7 @@
           maxlength="3"
           v-model="colour.g"
           id="ColourG"
+          v-on:keyup.enter="addColour"
         />
         <label for="ColourB">B:</label>
         <input
@@ -71,6 +75,7 @@
           maxlength="3"
           v-model="colour.b"
           id="ColourB"
+          v-on:keyup.enter="addColour"
         />
       </div>
     </div>
@@ -228,6 +233,7 @@ export default {
         .catch(error => {
           console.log(error);
         });
+      document.getElementById("ColourID").focus();
     },
     clearForm() {
       // Clear the form fields

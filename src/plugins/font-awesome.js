@@ -1,10 +1,21 @@
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { fas } from "@fortawesome/pro-solid-svg-icons";
-import { far } from "@fortawesome/pro-regular-svg-icons";
-import { fal } from "@fortawesome/pro-light-svg-icons";
-import { fab } from "@fortawesome/free-brands-svg-icons";
+import {
+  faTimes,
+  faMinus,
+  faPlus,
+  faCheck
+} from "@fortawesome/pro-solid-svg-icons";
+
+// Custom vue component for showing font-awesome icons
 import FontAwesomeIcon from "@/libs/FontAwesomeIcon.vue";
 
-library.add(fas, fab, far, fal);
+const iconsSolid = {
+  faTimes,
+  faMinus,
+  faPlus,
+  faCheck
+};
+
+library.add(iconsSolid);
 
 export { FontAwesomeIcon };
