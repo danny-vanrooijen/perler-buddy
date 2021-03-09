@@ -1,8 +1,6 @@
 <template>
   <div class="w-full p-5 lg:h-screen">
-    <h1 class="font-header text-4xl mb-6 text-center lg:text-left">
-      Your colour collection
-    </h1>
+    <Heading :level="1">Your colour collection</Heading>
     Add filter here
     <div>
       <div
@@ -109,8 +107,12 @@
 
 <script>
 import { db } from "@/firestore";
+import Heading from "@/components/parts/Heading";
 
 export default {
+  components: {
+    Heading
+  },
   props: {
     overlay: Boolean,
     toggle: Function,

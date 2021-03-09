@@ -3,7 +3,7 @@
     class="overflow-hidden overflow-y-scroll w-9/10 sm:w-1/2 lg:w-3/10 lg:h-full p-5 lg:pr-0 bg-green-900 text-white h-screen fixed right-0 top-0"
     :class="{ hidden: !overlay }"
   >
-    <h2 class="font-header text-2xl mb-6">Manage your colours</h2>
+    <Heading :level="2">Manage your colours</Heading>
     <div
       class="absolute top-0 right-0 py-6 px-5 cursor-pointer lg:pr-0"
       @click="toggle(false)"
@@ -181,8 +181,12 @@
 
 <script>
 import { db } from "@/firestore.js";
+import Heading from "@/components/parts/Heading";
 
 export default {
+  components: {
+    Heading
+  },
   props: {
     overlay: Boolean,
     toggle: Function,
