@@ -4,7 +4,7 @@
     Add filter here
     <div>
       <div
-        class="border-2 border-gray-400 rounded-lg mb-4 relative overflow-hidden group cursor-pointer hover:ring-4 ring-offset-2 ring-offset-gray-200 ring-blue-500"
+        class="border-2 border-gray-400 rounded-lg mb-4 relative overflow-hidden"
         v-for="colour in colourCollection"
         :key="colour"
         click="toggleColourOverlay(colour.code)"
