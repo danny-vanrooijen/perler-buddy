@@ -210,17 +210,17 @@ export default {
         .doc(this.colourCode)
         // Add the new colour to the database
         .set({
-          id: this.colour.id,
+          id: parseInt(this.colour.id),
           code: this.colourCode,
           name: this.colour.name,
-          r: this.colour.r,
-          g: this.colour.g,
-          b: this.colour.b,
+          r: parseInt(this.colour.r),
+          g: parseInt(this.colour.g),
+          b: parseInt(this.colour.b),
           brand: this.colour.brand,
           type: this.colour.type,
-          bags1000: this.colour.bags1000,
-          bags3000: this.colour.bags3000,
-          bags5000: this.colour.bags5000,
+          bags1000: parseInt(this.colour.bags1000),
+          bags3000: parseInt(this.colour.bags3000),
+          bags5000: parseInt(this.colour.bags5000),
           owned: this.colour.owned
         })
         // Clear the input fields after adding a colour

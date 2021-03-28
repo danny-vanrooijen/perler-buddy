@@ -7,7 +7,7 @@
         class="border-2 border-gray-400 rounded-lg mb-4 relative overflow-hidden group cursor-pointer hover:ring-4 ring-offset-2 ring-offset-gray-200 ring-blue-500"
         v-for="colour in colourCollection"
         :key="colour"
-        @click="toggleColourOverlay(colour.code)"
+        click="toggleColourOverlay(colour.code)"
       >
         <div
           class="block p-4 md:p-6 bg-white"
@@ -30,73 +30,15 @@
             <h2>
               <span class="font-header text-2xl">{{ colour.code }} - </span>
               <span class="font-header text-2xl">{{ colour.name }}</span>
-              <span class="text-base ml-2">({{ totalPerler(colour) }})</span>
             </h2>
           </div>
-          <div class="flex w-full justify-between md:w-1/2">
-            <!-- <div>
-              <div class="font-header">Owned</div>
-              <div class="mt-1">
-                <fa
-                  v-if="colour.owned"
-                  icon="check"
-                  width="20"
-                  height="20"
-                  class="text-green-500"
-                ></fa>
-                <fa
-                  v-else
-                  icon="times"
-                  width="20"
-                  height="20"
-                  class="text-red-500"
-                ></fa>
-              </div>
-            </div> -->
+          <div class="grid grid-cols-4 gap-4 sm:w-2/3 xl:w-1/2">
+            <BagsOwned :count="1000" :colour="colour"></BagsOwned>
+            <BagsOwned :count="3000" :colour="colour"></BagsOwned>
+            <BagsOwned :count="5000" :colour="colour"></BagsOwned>
             <div>
-              <div class="font-header">1000x</div>
-              <div class="relative">
-                <div
-                  class="absolute w-full h-full rounded-full border-2 border-gray-400 top-0 left-0 bg-gray-400"
-                ></div>
-                <div class="z-10 flex relative place-items-center px-2">
-                  <fa icon="minus" width="12" height="12"></fa>
-                  <div class="bg-white px-2 border-4 border-gray-400 mx-1">
-                    {{ colour.bags1000 }}
-                  </div>
-                  <fa icon="plus" width="12" height="12"></fa>
-                </div>
-              </div>
-            </div>
-            <div>
-              <div class="font-header">3000x</div>
-              <div class="relative">
-                <div
-                  class="absolute w-full h-full rounded-full border-2 border-gray-400 top-0 left-0 bg-gray-400"
-                ></div>
-                <div class="z-10 flex relative place-items-center px-2">
-                  <fa icon="minus" width="12" height="12"></fa>
-                  <div class="bg-white px-2 border-4 border-gray-400 mx-1">
-                    {{ colour.bags3000 }}
-                  </div>
-                  <fa icon="plus" width="12" height="12"></fa>
-                </div>
-              </div>
-            </div>
-            <div>
-              <div class="font-header">6000x</div>
-              <div class="relative">
-                <div
-                  class="absolute w-full h-full rounded-full border-2 border-gray-400 top-0 left-0 bg-gray-400"
-                ></div>
-                <div class="z-10 flex relative place-items-center px-2">
-                  <fa icon="minus" width="12" height="12"></fa>
-                  <div class="bg-white px-2 border-4 border-gray-400 mx-1">
-                    {{ colour.bags5000 }}
-                  </div>
-                  <fa icon="plus" width="12" height="12"></fa>
-                </div>
-              </div>
+              <div class="font-header">Stock</div>
+              <div class="mt-9 text-2xl">{{ totalPerler(colour) }}</div>
             </div>
           </div>
         </div>
@@ -108,10 +50,12 @@
 <script>
 import { db } from "@/firestore";
 import Heading from "@/components/parts/Heading";
+import BagsOwned from "@/components/parts/BagsOwned";
 
 export default {
   components: {
-    Heading
+    Heading,
+    BagsOwned
   },
   props: {
     overlay: Boolean,
@@ -126,7 +70,7 @@ export default {
     };
   },
   mounted() {
-    this.getDatabase()
+    db.collection("colours")
       .orderBy("code")
       .onSnapshot(
         snapshot => {
@@ -146,9 +90,6 @@ export default {
       );
   },
   methods: {
-    getDatabase() {
-      return db.collection("colours");
-    },
     addColourToList(colour) {
       this.colourCollection[colour.code] = colour;
     },

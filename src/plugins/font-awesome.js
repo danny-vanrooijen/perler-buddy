@@ -3,7 +3,8 @@ import {
   faTimes,
   faMinus,
   faPlus,
-  faCheck
+  faCheck,
+  faChevronUp
 } from "@fortawesome/pro-solid-svg-icons";
 
 // Custom vue component for showing font-awesome icons
@@ -13,7 +14,8 @@ const iconsSolid = {
   faTimes,
   faMinus,
   faPlus,
-  faCheck
+  faCheck,
+  faChevronUp
 };
 
 library.add(iconsSolid);
