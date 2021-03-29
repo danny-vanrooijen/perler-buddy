@@ -1,44 +1,41 @@
 <template>
-  <div class="w-full p-5 lg:h-screen">
-    <Heading :level="1">Your colour collection</Heading>
+  <div class="w-full lg:h-screen p-4 font-normal">
+    <Heading :level="1" class="font-thin">Your colour collection</Heading>
     Add filter here
-    <div>
+    <div class="grid gap-4 grid-cols-1 sm:grid-cols-2 xl:grid-cols-3">
       <div
-        class="border-2 border-gray-400 rounded-lg mb-4 relative overflow-hidden"
+        class="bg-white relative shadow border-b-8"
+        :style="'border-color:rgb(' + colourRGB(colour) + ')'"
         v-for="colour in colourCollection"
         :key="colour"
         click="toggleColourOverlay(colour.code)"
+        :class="{
+          'opacity-30': !colour.owned
+        }"
       >
-        <div
-          class="block p-4 md:p-6 bg-white"
-          :class="{
-            'opacity-30': !colour.owned
-          }"
-        >
-          <div
-            class="absolute top-4 right-4 md:bottom-6 md:right-6 md:top-auto"
-          >
+        <div class="block p-4 md:p-6">
+          <div class="absolute bottom-4 right-4">
             <div
-              class="w-6 h-6 md:w-8 md:h-8 bg-white border-8 md:border-8 rounded-full"
+              class="w-8 h-8 border-8 rounded-full"
               :style="'border-color:rgb(' + colourRGB(colour) + ')'"
             ></div>
           </div>
-          <div class="mb-2 sm:flex justify-between items-baseline w-full">
-            <div class="md:order-last">
-              {{ colour.brand }} / {{ colour.type }}
-            </div>
-            <h2>
-              <span class="font-header text-2xl">{{ colour.code }} - </span>
-              <span class="font-header text-2xl">{{ colour.name }}</span>
+          <div class="mb-2 flex justify-between items-baseline w-full">
+            <h2 class="font-header text-2xl">
+              <span>{{ colour.code }} - </span>
+              <span>{{ colour.name }}</span>
             </h2>
+            <div class="font-thin">{{ colour.brand }} / {{ colour.type }}</div>
           </div>
-          <div class="grid grid-cols-4 gap-4 sm:w-2/3 xl:w-1/2">
+          <div class="grid grid-cols-5 gap-4">
             <BagsOwned :count="1000" :colour="colour"></BagsOwned>
             <BagsOwned :count="3000" :colour="colour"></BagsOwned>
             <BagsOwned :count="5000" :colour="colour"></BagsOwned>
             <div>
               <div class="font-header">Stock</div>
-              <div class="mt-9 text-2xl">{{ totalPerler(colour) }}</div>
+              <div class="mt-9 text-2xl">
+                {{ totalPerler(colour) }}
+              </div>
             </div>
           </div>
         </div>

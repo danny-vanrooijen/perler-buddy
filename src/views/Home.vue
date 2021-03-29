@@ -1,5 +1,5 @@
 <template>
-  <div class="lg:flex lg:container lg:w-4/5">
+  <div class="lg:flex md:container md:w-9/10 lg:w-4/5">
     <my-collection
       :overlay="colourOverlay"
       :toggle="toggleColourOverlay"
