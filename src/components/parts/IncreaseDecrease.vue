@@ -4,6 +4,7 @@
       @click="updateCount(count, 1)"
       class="inline-block"
       icon="chevron-up"
+      type="fal"
       width="24"
       height="24"
     ></fa>
@@ -14,6 +15,7 @@
       @click="updateCount(count, -1)"
       class="inline-block transform rotate-180"
       icon="chevron-up"
+      type="fal"
       width="24"
       height="24"
     ></fa>

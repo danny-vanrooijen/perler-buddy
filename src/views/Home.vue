@@ -1,21 +1,23 @@
 <template>
+  <Navigation></Navigation>
   <div class="lg:flex md:container md:w-9/10 lg:w-4/5">
-    <my-collection
+    <MyCollection
       :overlay="colourOverlay"
       :toggle="toggleColourOverlay"
       :colourProp="colour"
       :editing="editing"
-    ></my-collection>
-    <add-colour
+    ></MyCollection>
+    <AddColour
       :overlay="colourOverlay"
       :toggle="toggleColourOverlay"
       :colourProp="colour"
       :editing="editing"
-    ></add-colour>
+    ></AddColour>
   </div>
 </template>
 
 <script>
+import Navigation from "@/components/Navigation";
 import AddColour from "@/components/AddColour";
 import MyCollection from "@/components/MyCollection";
 
@@ -40,6 +42,7 @@ export default {
     };
   },
   components: {
+    Navigation,
     AddColour,
     MyCollection
   },
