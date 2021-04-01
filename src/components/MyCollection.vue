@@ -1,7 +1,8 @@
 <template>
   <div class="w-full lg:h-screen p-4 font-normal">
-    <Heading :level="1" class="font-thin">Your colour collection</Heading>
-    Add filter here
+    <h1 class="font-header text-4xl mb-6 text-center lg:text-left font-thin">
+      Your colour collection
+    </h1>
     <div class="grid gap-4 grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 pb-8">
       <div
         class="bg-white relative shadow border-b-8"
@@ -48,12 +49,10 @@
 
 <script>
 import { db } from "@/firestore";
-import Heading from "@/components/parts/Heading";
 import BagsOwned from "@/components/parts/BagsOwned";
 
 export default {
   components: {
-    Heading,
     BagsOwned
   },
   props: {

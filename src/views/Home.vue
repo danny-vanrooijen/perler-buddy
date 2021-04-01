@@ -7,21 +7,18 @@
       :colourProp="colour"
       :editing="editing"
     ></MyCollection>
-    <AddColour
-      :overlay="colourOverlay"
-      :toggle="toggleColourOverlay"
-      :colourProp="colour"
-      :editing="editing"
-    ></AddColour>
   </div>
 </template>
 
 <script>
 import Navigation from "@/components/Navigation";
-import AddColour from "@/components/AddColour";
 import MyCollection from "@/components/MyCollection";
 
 export default {
+  components: {
+    Navigation,
+    MyCollection
+  },
   data() {
     return {
       colourOverlay: false,
@@ -40,11 +37,6 @@ export default {
         owned: true
       }
     };
-  },
-  components: {
-    Navigation,
-    AddColour,
-    MyCollection
   },
   methods: {
     toggleColourOverlay(edit) {
