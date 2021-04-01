@@ -1,17 +1,18 @@
 <template>
   <div class="w-full lg:h-screen p-4 font-normal">
-    <Heading :level="1" class="font-thin">Your colour collection</Heading>
-    Add filter here
-    <div class="grid gap-4 grid-cols-1 sm:grid-cols-2 xl:grid-cols-3">
+    <h1 class="font-header text-4xl mb-6 text-center lg:text-left font-thin">
+      Your colour collection
+    </h1>
+    <div class="grid gap-4 grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 pb-8">
       <div
         class="bg-white relative shadow border-b-8"
+        :class="{
+          'opacity-30': !colour.owned
+        }"
         :style="'border-color:rgb(' + colourRGB(colour) + ')'"
         v-for="colour in colourCollection"
         :key="colour"
         click="toggleColourOverlay(colour.code)"
-        :class="{
-          'opacity-30': !colour.owned
-        }"
       >
         <div class="block p-4 md:p-6">
           <div class="absolute bottom-4 right-4">
@@ -25,7 +26,9 @@
               <span>{{ colour.code }} - </span>
               <span>{{ colour.name }}</span>
             </h2>
-            <div class="font-thin">{{ colour.brand }} / {{ colour.type }}</div>
+            <div class="font-thin text-right">
+              {{ colour.brand }} / {{ colour.type }}
+            </div>
           </div>
           <div class="grid grid-cols-5 gap-4">
             <BagsOwned :count="1000" :colour="colour"></BagsOwned>
@@ -46,12 +49,10 @@
 
 <script>
 import { db } from "@/firestore";
-import Heading from "@/components/parts/Heading";
 import BagsOwned from "@/components/parts/BagsOwned";
 
 export default {
   components: {
-    Heading,
     BagsOwned
   },
   props: {

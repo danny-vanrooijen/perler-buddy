@@ -1,9 +1,5 @@
 <template>
-  <div>
-    <ul v-for="(data, id) in colours" :key="id">
-      <li>{{ id }} : {{ data.name }}</li>
-    </ul>
-  </div>
+  <div></div>
 </template>
 
 <script>
@@ -11,17 +7,15 @@ import { db } from "@/firestore";
 
 export default {
   data() {
-    return {
-      colours: {}
-    };
+    return {};
   },
   mounted() {
-    this.colours = db
-      .collection("colours")
+    db.collection("colours")
       .get()
       .then(querySnapshot => {
         querySnapshot.forEach(doc => {
-          this.colours[doc.id] = doc.data();
+          // doc.data() is never undefined for query doc snapshots
+          console.log(doc.id, " => ", doc.data());
         });
       });
   },

@@ -1,4 +1,5 @@
 <template>
+  <Navigation></Navigation>
   <div class="flex">
     <div class="w-3/5 md:w-2/3 h-screen bg-green-500">
       <PegBoard></PegBoard>
@@ -10,11 +11,13 @@
 </template>
 
 <script>
+import Navigation from "@/components/Navigation";
 import PegBoard from "@/components/PegBoard";
 import Legend from "@/components/Legend";
 
 export default {
   components: {
+    Navigation,
     PegBoard,
     Legend
   }

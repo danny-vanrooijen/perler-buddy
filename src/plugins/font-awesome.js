@@ -1,19 +1,25 @@
-import { library } from "@fortawesome/fontawesome-svg-core";
+import { faTimes, faCheck } from "@fortawesome/pro-solid-svg-icons";
 import {
-  faTimes,
-  faCheck,
-  faChevronUp
-} from "@fortawesome/pro-solid-svg-icons";
-
-// Custom vue component for showing font-awesome icons
-import FontAwesomeIcon from "@/libs/FontAwesomeIcon.vue";
+  faListAlt,
+  faTh,
+  faUserCog,
+  faChevronUp as faChevronUpLight
+} from "@fortawesome/pro-light-svg-icons";
 
 const iconsSolid = {
   faTimes,
-  faCheck,
-  faChevronUp
+  faCheck
+};
+const iconsLight = {
+  faListAlt,
+  faTh,
+  faUserCog,
+  faChevronUpLight
 };
 
-library.add(iconsSolid);
+import { library } from "@fortawesome/fontawesome-svg-core";
+library.add(iconsSolid, iconsLight);
 
+// Custom vue component for showing font-awesome icons
+import FontAwesomeIcon from "@/libs/FontAwesomeIcon.vue";
 export { FontAwesomeIcon };
