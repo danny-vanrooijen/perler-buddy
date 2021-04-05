@@ -1,6 +1,6 @@
 <template>
-  <Navigation></Navigation>
-  <div class="lg:flex md:container md:w-9/10 lg:w-4/5">
+  <div class="lg:flex md:container md:w-9/10 lg:w-4/5 relative">
+    <Navigation></Navigation>
     <MyCollection
       :overlay="colourOverlay"
       :toggle="toggleColourOverlay"

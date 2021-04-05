@@ -1,18 +1,21 @@
 <template>
-  <Navigation></Navigation>
-  <div class="lg:flex md:container md:w-9/10 lg:w-4/5">
-    <ManageColours></ManageColours>
+  <div class="lg:flex md:container md:w-9/10 lg:w-4/5 relative">
+    <Navigation></Navigation>
+    <AddColour
+      :overlay="colourOverlay"
+      :toggle="toggleColourOverlay"
+      :colourProp="colour"
+      :editing="editing"
+    ></AddColour>
   </div>
 </template>
 
 <script>
 import Navigation from "@/components/Navigation";
-import ManageColours from "@/components/ManageColours";
 
 export default {
   components: {
-    Navigation,
-    ManageColours
+    Navigation
   },
   data() {},
   methods: {}
