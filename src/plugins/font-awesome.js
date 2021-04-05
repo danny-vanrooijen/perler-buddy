@@ -21,5 +21,5 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 library.add(iconsSolid, iconsLight);
 
 // Custom vue component for showing font-awesome icons
-import FontAwesomeIcon from "@/libs/FontAwesomeIcon.vue";
+import FontAwesomeIcon from "@/libraries/FontAwesomeIcon.vue";
 export { FontAwesomeIcon };

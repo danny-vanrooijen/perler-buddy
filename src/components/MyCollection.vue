@@ -48,7 +48,6 @@
 </template>
 
 <script>
-import { db } from "@/firestore";
 import BagsOwned from "@/components/parts/BagsOwned";
 
 export default {
@@ -63,34 +62,11 @@ export default {
   },
   data() {
     return {
-      colourCollection: {},
+      colourCollection: this.$store.state.perler,
       colourForm: this.colourProp
     };
   },
-  mounted() {
-    db.collection("colours")
-      .orderBy("code")
-      .onSnapshot(
-        snapshot => {
-          snapshot.docChanges().forEach(change => {
-            if (change.type === "removed") {
-              return;
-            } else if (change.type === "modified") {
-              this.addColourToList(change.doc.data());
-            } else if (change.type === "added") {
-              this.addColourToList(change.doc.data());
-            }
-          });
-        },
-        error => {
-          console.log(error);
-        }
-      );
-  },
   methods: {
-    addColourToList(colour) {
-      this.colourCollection[colour.code] = colour;
-    },
     totalPerler(colour) {
       return (
         colour.bags1000 * 1000 + colour.bags3000 * 3000 + colour.bags5000 * 5000
