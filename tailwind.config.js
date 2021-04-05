@@ -52,7 +52,8 @@ module.exports = {
   },
   variants: {
     extend: {
-      ringWidth: ["hover"]
+      ringWidth: ["hover"],
+      backgroundColor: ["even"]
     }
   },
   plugins: [require("tailwindcss-debug-screens")]

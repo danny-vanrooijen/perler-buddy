@@ -1,10 +1,14 @@
 import { faTimes, faCheck } from "@fortawesome/pro-solid-svg-icons";
+
 import {
   faListAlt,
   faTh,
   faUserCog,
-  faChevronUp as faChevronUpLight
+  faChevronUp as faChevronUpLight,
+  faTrashAlt as faTrashAltLight
 } from "@fortawesome/pro-light-svg-icons";
+
+// import { faTrashAlt as faTrashAltReg } from "@fortawesome/pro-regular-svg-icons";
 
 const iconsSolid = {
   faTimes,
@@ -14,8 +18,12 @@ const iconsLight = {
   faListAlt,
   faTh,
   faUserCog,
-  faChevronUpLight
+  faChevronUpLight,
+  faTrashAltLight
 };
+// const iconsRegular = {
+//   faTrashAltReg
+// };
 
 import { library } from "@fortawesome/fontawesome-svg-core";
 library.add(iconsSolid, iconsLight);
