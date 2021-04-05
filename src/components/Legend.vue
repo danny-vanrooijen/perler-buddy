@@ -1,23 +1,17 @@
 <template>
-  <div></div>
+  <div>
+    <ul v-for="colour in colourCollection" :key="colour">
+      <li>{{ colour.code }}</li>
+    </ul>
+  </div>
 </template>
 
 <script>
-import { db } from "@/firestore";
-
 export default {
   data() {
-    return {};
-  },
-  mounted() {
-    db.collection("colours")
-      .get()
-      .then(querySnapshot => {
-        querySnapshot.forEach(doc => {
-          // doc.data() is never undefined for query doc snapshots
-          console.log(doc.id, " => ", doc.data());
-        });
-      });
+    return {
+      colourCollection: this.$store.state.perler
+    };
   },
   methods: {}
 };

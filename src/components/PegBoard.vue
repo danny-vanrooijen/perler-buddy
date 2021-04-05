@@ -1,6 +1,6 @@
 <template>
   <div
-    class="text-xs m-auto bg-white flex justify-center w-full h-full place-items-center"
+    class="text-xs m-auto flex justify-center w-full h-full place-items-center"
   >
     <table class="border-separate md:border-collapse">
       <!-- The first row shows the horizontal peg count -->

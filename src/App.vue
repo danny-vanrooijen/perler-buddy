@@ -26,7 +26,6 @@ export default {
           console.log(error);
         }
       );
-    // console.log("The total collection", this.$store.perler);
   },
   methods: {
     ...mapMutations(["addColour"]),
