@@ -48,6 +48,9 @@ module.exports = {
       screens: {
         xl: "1280px"
       }
+    },
+    minHeight: {
+      "80": "20rem"
     }
   },
   variants: {

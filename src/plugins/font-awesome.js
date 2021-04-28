@@ -5,7 +5,8 @@ import {
   faTh,
   faUserCog,
   faChevronUp as faChevronUpLight,
-  faTrashAlt as faTrashAltLight
+  faTrashAlt as faTrashAltLight,
+  faPlus
 } from "@fortawesome/pro-light-svg-icons";
 
 // import { faTrashAlt as faTrashAltReg } from "@fortawesome/pro-regular-svg-icons";
@@ -19,7 +20,8 @@ const iconsLight = {
   faTh,
   faUserCog,
   faChevronUpLight,
-  faTrashAltLight
+  faTrashAltLight,
+  faPlus
 };
 // const iconsRegular = {
 //   faTrashAltReg

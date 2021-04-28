@@ -1,6 +1,6 @@
 <template>
-  <div class="w-full lg:h-screen py-4 font-normal">
-    <h1 class="font-header text-4xl mb-6 text-center md:text-left font-thin">
+  <div class="w-full pt-4 pb-20 font-normal">
+    <h1 class="font-header text-4xl mb-10 text-center md:text-left font-thin">
       Your colour collection
     </h1>
     <div class="grid gap-4 grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 pb-8">
